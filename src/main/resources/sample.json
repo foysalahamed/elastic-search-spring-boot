@@ -1,0 +1,21 @@
+{
+  "query": {
+    "bool": {
+      "must": [
+        { "match": { "title": "Elasticsearch" }},
+        { "range": { "price": { "gte": 100, "lte": 200 }}}
+      ],
+      "filter": [
+        { "term": { "category": "Technology" }}
+      ]
+    }
+  },
+  "aggs": {
+    "avg_price": { "avg": { "field": "price" }}
+  },
+  "size": 10,
+  "from": 0,
+  "sort": [
+    { "price": { "order": "asc" }}
+  ]
+}
